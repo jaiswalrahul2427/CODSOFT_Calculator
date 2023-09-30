@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table
+    {
+        margin: auto;
+        
+        background:#ccc;
+    }
+    table button
+    {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        color: white;
+        background-color: blue;
+        border: none;
+    }
+    table tr td
+    {
+        padding: 5px;
+    }
+table input
+{
+    width: 95%;
+    border-radius: 10px;
+    height: 40px;
+    text-align: right;
+    padding-right: 10px;
+}
+table
+{
+    border-radius: 10px;
+}
+button
+{
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+</style>
+<script>
+    function storeData(v){
+var txtInput=document.getElementById('txtInput');
+var oldvalue=txtInput.value;
+var t=oldvalue.length;
+var lastChr=oldvalue[t-1];
+txtInput.value=v+oldvalue;
+var oprsym=["+","-","/","*","."];
+if(oprsym.includes(v)){
+    if(oprsym.includes(lastChr)){
+var removeLast=oldvalue.slice(0,-1);
+txtInput.value=removeLast+v;
+    }
+    else {
+txtInput.value=oldvalue+v;
+    }
+    
+}
+else {
+txtInput.value=oldvalue+v;
+}
+
+    }
+    function calData()
+    {
+        var txtInput=document.getElementById('txtInput');
+        var oldvalue=eval(txtInput.value);
+        txtInput.value=oldvalue;
+    }
+    function clsData()
+    {
+        document.getElementById('txtInput').value='';
+    }
+</script>
+<body>
+    <table>
+        <tr>
+            <td><button onclick="clsData()">C</button></td>
+            <td colspan="3"><input  type="text" name="" id="txtInput"></td>
+        </tr>
+        <tr>
+            <td><button onclick="storeData('+')">+</button></td>
+            <td><button onclick="storeData('1')">1</button></td>
+            <td><button onclick="storeData('2')">2</button></td>
+            <td><button onclick="storeData('3')">3</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="storeData('-')">-</button></td>
+            <td><button onclick="storeData('4')">4</button></td>
+            <td><button onclick="storeData('5')">5</button></td>
+            <td><button onclick="storeData('6')">6</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="storeData('*')">*</button></td>
+            <td><button onclick="storeData('7')">7</button></td>
+            <td><button onclick="storeData('8')">8</button></td>
+            <td><button onclick="storeData('9')">9</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="storeData('/')">/</button></td>
+            <td><button onclick="storeData('.')">.</button></td>
+            <td><button onclick="storeData('0')">0</button></td>
+            <td><button onclick="calData()">=</button></td>
+        </tr>
+    </table>
+</body>
+</html>
